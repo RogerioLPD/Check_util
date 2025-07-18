@@ -1,0 +1,54 @@
+
+
+plugins {
+    id "com.android.application"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    // END: FlutterFire Configuration
+    id "kotlin-android"
+    // O Flutter Gradle Plugin deve ser aplicado após os plugins do Android e Kotlin.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.checkutil"
+    compileSdk = 34  // Defina explicitamente a versão do SDK
+
+    ndkVersion = "25.2.9519653"  // Defina a versão correta do NDK (verifique no seu SDK Manager)
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    defaultConfig {
+        applicationId = "com.example.checkutil"
+        minSdk = 23  // Defina a versão mínima suportada
+        targetSdk = 34  // Defina a versão alvo explicitamente
+        versionCode = 1
+        versionName = "1.0.0"
+    }
+
+    buildTypes {
+        release {
+            // Para builds de produção, configure um signingConfig adequado
+            signingConfig = signingConfigs.debug
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:32.7.0') // BOM para manter versões compatíveis
+    implementation 'com.google.firebase:firebase-auth:22.3.1' // Firebase Auth compatível com Kotlin 1.9.0
+   
+}
